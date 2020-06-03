@@ -26,8 +26,8 @@ def gameStartInterface(screen, cfg):
     player_rect = player_render_white.get_rect()
     player_rect.left, player_rect.top = cfg.WIDTH / 2.8, cfg.HEIGHT / 2.5
 
-    players_render_white = font.render('2 PLAYER', True, color_white)
-    players_render_red = font.render('2 PLAYER', True, color_red)
+    players_render_white = font.render('2 PLAYERS', True, color_white)
+    players_render_red = font.render('2 PLAYERS', True, color_red)
     players_rect = players_render_white.get_rect()
     players_rect.left, players_rect.top = cfg.WIDTH / 2.8, cfg.HEIGHT / 2
     # 游戏提示
@@ -64,7 +64,7 @@ def gameStartInterface(screen, cfg):
             screen.blit(player_render_red, player_rect)
             screen.blit(players_render_white, players_rect)
         else:
-            tank_rect.right, tank_rect.top = player_rect.left - 10, player_rect.top
+            tank_rect.right, tank_rect.top = players_rect.left - 10, players_rect.top
             screen.blit(tank_cursor, tank_rect)
             screen.blit(player_render_white, player_rect)
             screen.blit(players_render_red, players_rect)

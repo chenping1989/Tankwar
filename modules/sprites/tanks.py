@@ -11,7 +11,7 @@ from .bullet import Bullet
 
 
 class PlayerTank(pygame.sprite.Sprite):
-    def __init__(self, name, player_tank_image_paths, position, border_len, screen_size, direction='up',
+    def __init__(self, name, player_tank_image_paths, position, border_len, screensize, direction='up',
                  bullet_image_paths=None, protected_mask_path=None, boom_image_path=None, **kwargs):
         pygame.sprite.Sprite.__init__(self)
         # 玩家1 / 玩家2
@@ -21,7 +21,7 @@ class PlayerTank(pygame.sprite.Sprite):
         # 地图边缘宽度
         self.border_len = border_len
         # 屏幕大小
-        self.screensize = screen_size
+        self.screensize = screensize
         # 初始坦克方向
         self.init_direction = direction
         # 初始坦克位置
@@ -50,7 +50,7 @@ class PlayerTank(pygame.sprite.Sprite):
         if self.booming_flag:
             return
         # 方向不一致先改变方向
-        if self.dirction != direction:
+        if self.direction != direction:
             self.setDirection(direction)
             self.switch_count = self.switch_time
             self.move_cache_count = self.move_cache_time
@@ -115,7 +115,7 @@ class PlayerTank(pygame.sprite.Sprite):
         # 无敌状态更新
         if self.is_protected:
             self.protected_count += 1
-            if self.prtected_count > self.protected_time:
+            if self.protected_count > self.protected_time:
                 self.is_protected = False
                 self.protected_count = 0
 
@@ -248,26 +248,26 @@ class PlayerTank(pygame.sprite.Sprite):
         self.setDirection(self.direction)
         self.image = self.tank_direction_image.subsurfance((48 * int(self.switch_pointer), 0), (48, 48))
         self.rect = self.image.get_rect()
-        self.rect.left, self.rect.top = self.init_positions
+        self.rect.left, self.rect.top = self.init_position
 
 
 '''敌方坦克类'''
 
 
 class EnemyTank(pygame.sprite.Sprite):
-    def __init__(self, enemy_tank_paths, appear_image_path, position, border_len, screen_size, bullet_image_paths=None,
+    def __init__(self, enemy_tank_image_paths, appear_image_path, position, border_len, screensize, bullet_image_paths=None,
                  food_image_paths=None, boom_image_path=None, **kwargs):
         pygame.sprite.Sprite.__init__(self)
         self.bullet_image_paths = bullet_image_paths
         self.border_len = border_len
-        self.screensize = screen_size
+        self.screensize = screensize
         # 坦克出场特效
         appear_image = pygame.image.load(appear_image_path).convert_alpha()
         self.appear_images = [appear_image.subsurface((0, 0), (48, 48)), appear_image.subsurface((48, 0), (48, 48)),
                               appear_image.subsurface((96, 0), (48, 48))]
         # 坦克类型
-        self.tanktype = random.choice(list(enemy_tank_paths.keys()))
-        self.enemy_tank_image_paths = enemy_tank_paths.get(self.tanktype)
+        self.tanktype = random.choice(list(enemy_tank_image_paths.keys()))
+        self.enemy_tank_image_paths = enemy_tank_image_paths.get(self.tanktype)
         # 坦克等级
         self.tanklevel = random.randint(0, len(self.enemy_tank_image_paths) - 2)
         self.food = None
