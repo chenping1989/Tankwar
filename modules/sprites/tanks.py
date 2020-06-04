@@ -246,7 +246,7 @@ class PlayerTank(pygame.sprite.Sprite):
         # 坦克图片
         self.tank_image = pygame.image.load(self.player_tank_image_paths[self.tanklevel]).convert_alpha()
         self.setDirection(self.direction)
-        self.image = self.tank_direction_image.subsurfance((48 * int(self.switch_pointer), 0), (48, 48))
+        self.image = self.tank_direction_image.subsurface((48 * int(self.switch_pointer), 0), (48, 48))
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = self.init_position
 
@@ -285,7 +285,7 @@ class EnemyTank(pygame.sprite.Sprite):
         self.tank_image = pygame.image.load(self.enemy_tank_image_paths[self.tanklevel]).convert_alpha()
         self.direction = random.choice(['up', 'down', 'left', 'right'])
         self.setDirection(self.direction)
-        self.image = self.tank_direction_image.subsurfance((48 * int(self.switch_pointer), 0), (48, 48))
+        self.image = self.tank_direction_image.subsurface((48 * int(self.switch_pointer), 0), (48, 48))
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = position
         self.image = self.appear_images[0]
