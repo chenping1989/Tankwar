@@ -8,7 +8,7 @@ import pygame
 '''游戏结束界面'''
 
 
-def gameEndIterface(screen, cfg, is_win=True):
+def gameEndInterface(screen, cfg, is_win=True):
     background_img = pygame.image.load(cfg.OTHER_IMAGE_PATHS.get('background'))
     color_white = (255, 255, 255)
     color_red = (255, 0, 0)

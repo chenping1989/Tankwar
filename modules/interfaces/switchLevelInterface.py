@@ -8,7 +8,7 @@ import pygame
 '''关卡切换界面'''
 
 
-def switchLevelIterface(screen, cfg, level_next=1):
+def switchLevelInterface(screen, cfg, level_next=1):
     background_img = pygame.image.load(cfg.OTHER_IMAGE_PATHS.get('background'))
     color_white = (255, 255, 255)
     color_gray = (192, 192, 192)
@@ -47,7 +47,7 @@ def switchLevelIterface(screen, cfg, level_next=1):
         screen.blit(gamebar, gamebar_rect)
         screen.blit(tank_cursor, tank_rect)
         pygame.draw.rect(screen, color_gray, (
-            gamebar_rect.left + 8, gamebar_rect.top + 8, tank_rect - gamebar_rect.left - 8,
+            gamebar_rect.left + 8, gamebar_rect.top + 8, tank_rect.left - gamebar_rect.left - 8,
             tank_rect.bottom - gamebar_rect.top - 16))
         tank_rect.left += 4
         load_time_left -= 4
