@@ -36,10 +36,12 @@ def gameEndInterface(screen, cfg, is_win=True):
     restart_render_red = font.render('RESTART', True, color_red)
     restart_rect = restart_render_white.get_rect()
     restart_rect.left, restart_rect.top = cfg.WIDTH / 2.4, cfg.HEIGHT / 2
+
     quit_render_white = font.render('QUIT', True, color_white)
     quit_render_red = font.render('QUIT', True, color_red)
     quit_rect = quit_render_white.get_rect()
     quit_rect.left, quit_rect.top = cfg.WIDTH / 2.4, cfg.HEIGHT / 1.6
+
     is_quit_game = False
     # 主循环
     clock = pygame.time.Clock()
@@ -49,9 +51,9 @@ def gameEndInterface(screen, cfg, is_win=True):
                 pygame.quit()
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
-                if event.type == pygame.K_RETURN:
+                if event.key == pygame.K_RETURN:
                     return is_quit_game
-                elif event.type == pygame.K_UP or event.type == pygame.K_DOWN or event.type == pygame.K_w or event.type == pygame.K_s:
+                elif event.key == pygame.K_UP or event.key == pygame.K_DOWN or event.key == pygame.K_w or event.key == pygame.K_s:
                     is_quit_game = not is_quit_game
         screen.blit(background_img, (0, 0))
         gameover_flash_count += 1
@@ -65,11 +67,11 @@ def gameEndInterface(screen, cfg, is_win=True):
             tank_rect.right, tank_rect.top = restart_rect.left - 10, restart_rect.top
             screen.blit(tank_cursor, tank_rect)
             screen.blit(restart_render_red, restart_rect)
-            screen.blit(restart_render_white, quit_rect)
+            screen.blit(quit_render_white, quit_rect)
         else:
             tank_rect.right, tank_rect.top = quit_rect.left - 10, quit_rect.top
             screen.blit(tank_cursor, tank_rect)
             screen.blit(restart_render_white, restart_rect)
-            screen.blit(restart_render_red, quit_rect)
+            screen.blit(quit_render_red, quit_rect)
         pygame.display.update()
         clock.tick(60)

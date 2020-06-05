@@ -85,7 +85,7 @@ class PlayerTank(pygame.sprite.Sprite):
         if pygame.sprite.spritecollide(self, ememy_tank_group, False, None):
             self.rect = rect_ori
         # --碰到玩家大本营
-        if pygame.sprite.spritecollide(self, home):
+        if pygame.sprite.collide_rect(self, home):
             self.rect = rect_ori
         # --碰到边界
         if self.rect.left < self.border_len:
@@ -101,7 +101,7 @@ class PlayerTank(pygame.sprite.Sprite):
         if self.switch_count > self.switch_time:
             self.switch_count = 0
             self.switch_pointer = not self.switch_pointer
-            self.image = self.tank_direction_image.subsurfance((48 * int(self.switch_pointer), 0), (48, 48))
+            self.image = self.tank_direction_image.subsurface((48 * int(self.switch_pointer), 0), (48, 48))
 
     '''更新'''
 
@@ -180,7 +180,7 @@ class PlayerTank(pygame.sprite.Sprite):
         self.tanklevel = min(self.tanklevel + 1, len(self.player_tank_image_paths) - 1)
         self.tank_image = pygame.image.load(self.player_tank_image_paths[self.tanklevel]).convert_alpha()
         self.setDirection(self.direction)
-        self.image = self.tank_direction_image.subsurfance((48 * int(self.switch_pointer), 0), (48, 48))
+        self.image = self.tank_direction_image.subsurface((48 * int(self.switch_pointer), 0), (48, 48))
         return True
 
     '''降低坦克等级'''
@@ -195,7 +195,7 @@ class PlayerTank(pygame.sprite.Sprite):
         else:
             self.tank_image = pygame.image.load(self.player_tank_image_paths[self.tanklevel]).convert_alpha()
             self.setDirection(self.direction)
-            self.image = self.tank_direction_image.subsurfance((48 * int(self.switch_pointer), 0), (48, 48))
+            self.image = self.tank_direction_image.subsurface((48 * int(self.switch_pointer), 0), (48, 48))
         return True if self.tanklevel < 0 else False
 
     '''增加生命值'''
@@ -391,7 +391,7 @@ class EnemyTank(pygame.sprite.Sprite):
                     self.is_bullet_cooling = False
             # --能射击就射击
             data_return['bullet'] = self.shoot()
-
+        return data_return
     '''随机移动坦克'''
 
     def move(self, scene_elems, player_tank_group, enemy_tank_group, home):
@@ -483,7 +483,7 @@ class EnemyTank(pygame.sprite.Sprite):
         if self.switch_count > self.switch_time:
             self.switch_count = 0
             self.switch_pointer = not self.switch_pointer
-            self.image = self.tank_direction_image.subsurfance((48 * int(self.switch_pointer), 0), (48, 48))
+            self.image = self.tank_direction_image.subsurface((48 * int(self.switch_pointer), 0), (48, 48))
 
     '''设置坦克方向'''
 

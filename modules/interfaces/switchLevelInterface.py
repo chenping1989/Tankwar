@@ -12,7 +12,7 @@ def switchLevelInterface(screen, cfg, level_next=1):
     background_img = pygame.image.load(cfg.OTHER_IMAGE_PATHS.get('background'))
     color_white = (255, 255, 255)
     color_gray = (192, 192, 192)
-    font = pygame.font.Font(cfg.FONTPATH, cfg.WIDTH // 12)
+    font = pygame.font.Font(cfg.FONTPATH, cfg.WIDTH // 20)
     logo_img = pygame.image.load(cfg.OTHER_IMAGE_PATHS.get('logo'))
     logo_img = pygame.transform.scale(logo_img, (446, 70))
     logo_rect = logo_img.get_rect()
@@ -49,7 +49,7 @@ def switchLevelInterface(screen, cfg, level_next=1):
         pygame.draw.rect(screen, color_gray, (
             gamebar_rect.left + 8, gamebar_rect.top + 8, tank_rect.left - gamebar_rect.left - 8,
             tank_rect.bottom - gamebar_rect.top - 16))
-        tank_rect.left += 4
-        load_time_left -= 4
+        tank_rect.left += 2
+        load_time_left -= 2
         pygame.display.update()
         clock.tick(60)

@@ -69,7 +69,7 @@ class GameLevel():
                                   bullet_image_paths=self.bullet_image_paths,
                                   protected_mask_path=self.other_image_paths.get('protect'),
                                   boom_image_path=self.other_image_paths.get('boom_static'))
-        player_bullets_group.add(tank_player1)
+        player_tanks_group.add(tank_player1)
         if self.is_dual_mode:
             tank_player2 = PlayerTank('player2', position=self.player_tank_positions[1],
                                       player_tank_image_paths=self.player_tank_image_paths,
@@ -77,7 +77,7 @@ class GameLevel():
                                       bullet_image_paths=self.bullet_image_paths,
                                       protected_mask_path=self.other_image_paths.get('protect'),
                                       boom_image_path=self.other_image_paths.get('boom_static'))
-            player_bullets_group.add(tank_player2)
+            player_tanks_group.add(tank_player2)
         # 敌方坦克
         for position in self.enemy_tank_positions:
             enemy_tanks_group.add(EnemyTank(enemy_tank_image_paths=self.enemy_tank_image_paths,
@@ -207,7 +207,7 @@ class GameLevel():
                 is_running = False
                 home.setDead()
             # --我方坦克在植物里
-            if pygame.sprite.spritecollide(player_tanks_group, self.scene_elems.get('tree_group'), False, False):
+            if pygame.sprite.groupcollide(player_tanks_group, self.scene_elems.get('tree_group'), False, False):
                 self.sounds['hit'].play()
             # --我方坦克吃到食物
             for player_tank in player_tanks_group:
@@ -265,7 +265,7 @@ class GameLevel():
                 enemy_tanks_group.add(tank)
                 if data_return.get('bullet'):
                     enemy_bullets_group.add(data_return.get('bullet'))
-                if data_return.get('bommed'):
+                if data_return.get('boomed'):
                     enemy_tanks_group.remove(tank)
             enemy_tanks_group.draw(screen)
             # 画场景地图
