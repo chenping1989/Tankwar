@@ -3,8 +3,6 @@ Function:
     用于运行某一游戏关卡
 '''
 import sys
-import pygame
-import random
 from modules.sprites.home import *
 from modules.sprites.tanks import *
 from modules.sprites.scenes import *
